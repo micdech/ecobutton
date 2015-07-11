@@ -1,0 +1,36 @@
+#!/usr/bin/python
+
+#
+# Questo semplice script python serve per utilizzare
+# Un EcoButton () con Linux
+# Grazie a GreyGreen per averlo creato inizialmente
+# url: http://www.greygreen.org/blog/code/python/ecobutton-linux
+#
+# Accertarsi di avere il pacchetto pm-utils o qualunque pacchetto garantisca la funzioni pm-hibernate o pm-suspend-hybrid.
+# Inizialmente utilizzava pm-hibernate al quale sarebbe preferibile sempre scegliere pm-suspend-hybrid.
+#
+# inserire nel file sudoers (da bash: sudo visudo) queste righe:
+# (è possibile inserire anche una sola di queste tre righe, a discrezione delle proprie esigenze)
+# micdech ALL=(ALL) NOPASSWD: /usr/sbin/pm-hibernate
+# micdech ALL=(ALL) NOPASSWD: /usr/sbin/pm-suspend-hybrid
+# micdech ALL=(ALL) NOPASSWD: /usr/sbin/pm-suspend
+#
+#
+# rendere lo script eseguibile:
+# chmod +x /path/dello/script
+#
+# Michele de Chiara
+# micdech@gmail.com
+#
+
+
+import os
+import time
+import fcntl
+
+aFile = open(os.path.expanduser("~/.ecobutton.lck"), 'w')
+fd = aFile.fileno()
+fcntl.lockf(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+# program aborts at this point if another already has lock
+os.system("sudo /usr/sbin/pm-suspend-hybrid")
+time.sleep(10)  # stay running to preserve lock
