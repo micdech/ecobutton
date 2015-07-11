@@ -11,9 +11,9 @@
 #
 # inserire nel file sudoers (da bash: sudo visudo) queste righe:
 # (è possibile inserire anche una sola di queste tre righe, a discrezione delle proprie esigenze)
-# micdech ALL=(ALL) NOPASSWD: /usr/sbin/pm-hibernate
-# micdech ALL=(ALL) NOPASSWD: /usr/sbin/pm-suspend-hybrid
-# micdech ALL=(ALL) NOPASSWD: /usr/sbin/pm-suspend
+# username ALL=(ALL) NOPASSWD: /usr/sbin/pm-hibernate
+# username ALL=(ALL) NOPASSWD: /usr/sbin/pm-suspend-hybrid
+# username ALL=(ALL) NOPASSWD: /usr/sbin/pm-suspend
 #
 #
 # rendere lo script eseguibile:
